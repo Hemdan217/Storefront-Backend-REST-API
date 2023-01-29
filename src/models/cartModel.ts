@@ -16,7 +16,7 @@ class Cart {
         product_id * 1,
         amount * 1 || 1,
       ]);
-      console.log(resultCart.rows);
+      // console.log(resultCart.rows);
       const sqlOrder =
         "INSERT INTO orders(user_id,cart_id) VALUES($1,$2) RETURNING  *; ";
       // @ts-ignore
@@ -25,7 +25,7 @@ class Cart {
         user_id * 1,
         resultCart.rows[0].id,
       ]);
-      console.log(resultOrder.rows);
+      // console.log(resultOrder.rows);
       conn.release();
 
       return resultOrder.rows;

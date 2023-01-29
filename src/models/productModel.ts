@@ -1,6 +1,6 @@
 // @ts-ignore
 import client, { ProductSchema } from "./dbConnect";
-
+// console.log(client);
 class Product {
   async getAllProducts(): Promise<ProductSchema[]> {
     try {
@@ -17,7 +17,7 @@ class Product {
     }
   }
 
-  async getSpecificProduct(id: string): Promise<ProductSchema[]> {
+  async getSpecificProduct(id: number): Promise<ProductSchema[]> {
     try {
       const conn = await client.connect();
       const sql = "SELECT * FROM products WHERE id=($1);";
@@ -45,12 +45,12 @@ class Product {
       throw new Error(`Can't Add Product . Error: ${e}`);
     }
   }
-  async updateProduct(id: string, price: number): Promise<ProductSchema[]> {
+  async updateProduct(id: number, price: number): Promise<ProductSchema[]> {
     try {
       const conn = await client.connect();
       const sql = "UPDATE products SET price=($1) WHERE id=($2)  RETURNING *;";
 
-      const result = await conn.query(sql, [Number(price), id]);
+      const result = await conn.query(sql, [price, id]);
 
       conn.release();
 
@@ -59,7 +59,7 @@ class Product {
       throw new Error(`Can't Update Product . Error: ${e}`);
     }
   }
-  async deleteProduct(id: string): Promise<ProductSchema[]> {
+  async deleteProduct(id: number): Promise<ProductSchema[]> {
     try {
       const conn = await client.connect();
       const sql = "DELETE FROM products WHERE id=($1)  RETURNING *;";

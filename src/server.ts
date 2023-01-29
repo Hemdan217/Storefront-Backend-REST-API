@@ -39,8 +39,9 @@ app.get("/api", function (req: Request, res: Response) {
 
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/", userRouter);
-
-app.listen(3000, function () {
-  console.log(`starting app on: ${3000}`);
+const { ENV } = process.env;
+const port = ENV == "dev" ? 3001 : 3002;
+app.listen(port, function () {
+  console.log(`starting app on: ${port}`);
 });
 export default app;

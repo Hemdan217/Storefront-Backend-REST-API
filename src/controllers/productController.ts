@@ -6,6 +6,7 @@ export const getAllProducts = async (req: Request, res: Response) => {
   try {
     const ProductModel = new Product();
     const allProducts = await ProductModel.getAllProducts();
+    // console.log(allProducts);
     res.json({
       status: "Success",
       lengthOfproducts: allProducts.length,
@@ -22,8 +23,9 @@ export const getProduct = async (req: Request, res: Response) => {
   try {
     const ProductModel = new Product();
     const specificProduct = await ProductModel.getSpecificProduct(
-      req.params.id
+      Number(req.params.id)
     );
+    // console.log(specificProduct);
     res.json({
       status: "Success",
       data: specificProduct,
@@ -38,7 +40,10 @@ export const getProduct = async (req: Request, res: Response) => {
 export const deleteProduct = async (req: Request, res: Response) => {
   try {
     const ProductModel = new Product();
-    const specificProduct = await ProductModel.deleteProduct(req.params.id);
+    const specificProduct = await ProductModel.deleteProduct(
+      Number(req.params.id)
+    );
+    // console.log(specificProduct);
     res.json({
       stauts: "done",
       message: `The ${specificProduct[0].name} product was deleted`,
@@ -54,9 +59,10 @@ export const updateProduct = async (req: Request, res: Response) => {
   try {
     const ProductModel = new Product();
     const updatedProduct = await ProductModel.updateProduct(
-      req.params.id,
-      req.body.price
+      Number(req.params.id),
+      Number(req.body.price)
     );
+    // console.log(updatedProduct);
     res.json({
       stauts: "done",
       message: `The ${updatedProduct[0].name} product was updated`,
@@ -76,6 +82,7 @@ export const createProduct = async (req: Request, res: Response) => {
       req.body.name,
       Number(req.body.price)
     );
+    // console.log(newProduct);
     res.json({
       stauts: "done",
       message: `The ${newProduct[0].name} product was added`,

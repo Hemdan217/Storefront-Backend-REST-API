@@ -2,10 +2,7 @@
 import client, { UserSchema } from "./dbConnect";
 
 class User {
-  async createUser(
-    user: UserSchema,
-    hashPassword: string
-  ): Promise<UserSchema[]> {
+  async createUser(user: UserSchema): Promise<UserSchema[]> {
     try {
       const conn = await client.connect();
       const sql =
@@ -17,7 +14,7 @@ class User {
         // @ts-ignore
         user.email,
         // @ts-ignore
-        hashPassword,
+        user.password,
         user.role_id || 0,
       ]);
 

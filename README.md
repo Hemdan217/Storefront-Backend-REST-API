@@ -9,6 +9,45 @@
 3. npm run start
 4. npm run lint
 
+# Database Setup :
+
+I have Used Two databases=>:
+1- The Main database is `store` database for production process create it using
+
+```
+db-migrate db:create store
+```
+
+then using the up migration to create the required tables
+
+```
+db-migrate up
+```
+
+2- The secondary database is `test` It is created durning the test process and dropped by the end
+`db-migrate db:create test && db-migrate --env test up  && npx tsc && cross-env ENV=test jasmine --random=false  && db-migrate db:drop test`
+The two database works on port 5432
+
+```
+
+{
+  "dev": {
+    "driver": "pg",
+    "host": "127.0.0.1",
+    "database": "store",
+    "user": "Hemdan",
+    "password": "####"
+  },
+  "test": {
+    "driver": "pg",
+    "host": "127.0.0.1",
+    "database": "test",
+    "user": "Hemdan",
+    "password": "##"
+  }
+}
+```
+
 ## brief of usage:
 
 This Project consists of Three endpoints
@@ -19,16 +58,16 @@ This Project consists of Three endpoints
    - To View all products details by sending GET request on (http://127.0.0.1:3000/api/v1/products)
    - To View details for specific product by id sending GET request on(http://127.0.0.1:3000/api/v1/products/{id})
 
-   1.2 CREATE (This is only available for registered users as admin)
+     1.2 CREATE (This is only available for registered users as admin)
 
    - To add new product details by sending POST request on(http://127.0.0.1:3000/api/v1/products)
    - it Required details for products => name of the product,price
 
-   1.3 Update (This is only available for registered users as admin)
+     1.3 Update (This is only available for registered users as admin)
 
    - To update details for specific product by id by sending PATCH request on(http://127.0.0.1:3000/api/v1/products/{id})
 
-   1.4 Delete (This is only available for registered users as admin)
+     1.4 Delete (This is only available for registered users as admin)
 
    - To DELETE specific product by id by sending DELETE request on(http://127.0.0.1:3000/api/v1/products/{id})
 
@@ -56,10 +95,8 @@ This Project consists of Three endpoints
    - it Required details for this Process => user must log in,and has token
    - for making this process by send id for product,amout for this product
 
-   3.2 View my Cart
+     3.2 View my Cart
 
    - To Make Order by sending GET request on (http://127.0.0.1:3000/api/v1/mycart)
    - it Required details for this Process => user must log in,and has token
    - It returns all the orders made by user who logged In
-
-## Required Technologies

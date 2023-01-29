@@ -11,7 +11,8 @@ export const registerUser = async (req: Request, res: Response) => {
   try {
     const UserModel = new User();
     const hash = bcrypt.hashSync(req.body.password, 10);
-    const newUser = await UserModel.createUser(req.body, hash);
+    req.body.password = hash;
+    const newUser = await UserModel.createUser(req.body);
     res.json({
       Status: "success",
       Message: "User created successfully",

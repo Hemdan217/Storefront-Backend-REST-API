@@ -9,20 +9,20 @@ const {
   POSTGRES_USER,
   POSTGRES_PASSWORD,
   ENV,
-  testingDB,
+  POSTGRES_TEST_DB,
 } = process.env;
 
 let client;
-if (ENV == "test") {
+if (ENV === "test") {
   client = new Pool({
     host: POSTGRES_HOST,
-    database: testingDB,
+    database: POSTGRES_TEST_DB,
     user: POSTGRES_USER,
     password: POSTGRES_PASSWORD,
   });
 }
 
-if (ENV == "dev") {
+if (ENV === "dev") {
   client = new Pool({
     host: POSTGRES_HOST,
     database: POSTGRES_DB,
@@ -30,7 +30,7 @@ if (ENV == "dev") {
     password: POSTGRES_PASSWORD,
   });
 }
-
+// console.log(ENV);
 export default client as Pool;
 export type ProductSchema = {
   id?: number;
