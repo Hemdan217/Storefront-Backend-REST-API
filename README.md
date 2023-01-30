@@ -48,6 +48,16 @@ The two database works on port 5432
 }
 ```
 
+'Environment Variables Used for this project'
+
+POSTGRES_HOST="localhost"
+POSTGRES_DB="store"
+POSTGRES_USER="###"
+POSTGRES_PASSWORD="####"
+ENV='dev'
+POSTGRES_TEST_DB="test"
+TOKEN_SECRET="###"
+
 ## brief of usage:
 
 This Project consists of Three endpoints
