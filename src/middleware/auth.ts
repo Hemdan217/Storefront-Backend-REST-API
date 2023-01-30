@@ -42,7 +42,7 @@ export const VerifyTokenOnly = async (
       const token = await req.cookies.token;
       // @ts-ignore
       const data = jwt.verify(token, TOKEN_SECRET);
-      console.log(data);
+      // console.log(data);
       // console.log(
       //   JSON.parse(Buffer.from(token.split(".")[1], "base64").toString()["id"])
       // );
